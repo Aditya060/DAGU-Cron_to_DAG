@@ -149,26 +149,62 @@ def add_basic_step(*args, **kwargs):
             yaml.dump(data, file)
     print(f"Step added to  '{dag_name}' at '{output_dir}'")
 
-# def add_basic_step(dag_name, step_schedule, step_name, step_command, step_dependencies):
-#     # output_dir = 
-#     data = {
-#             'schedule': step_schedule,
-#             'steps': 
-#             [
-#                 {
-#                     'name': step_name,
-#                     'command': step_command,
-#                     'depends': {iterable for iterable in step_dependencies}
-                    
-                    
-#                 }
-#             ]
 
-#         }
-#     print(data)
-#     file_path = os.path.join(output_dir, dag_name)
-#     with open(file_path, 'w') as file:
-#             yaml.dump(data, file)
-#     print(f"Step added to  '{dag_name}' at '{output_dir}'")
+@cli.command("transfer_step")
+@click.option("-o", "--output-dir", help="Output path for DAGs")
+@click.option("-source", "--source-file", help="Output path for DAGs")
+@click.option("-dest", "--destination-file", help="Output path for DAGs")
+@click.option("-step", "--step-name", help="Output path for DAGs")
+@click.pass_context
+def build(*args, **kwargs):
+    output_dir = kwargs['output_dir']
+    source_file = kwargs['source_file']
+    destination_file = kwargs['destination_file']
+    step_name = kwargs['step_name']
+
+    file_path = os.path.join(output_dir, source_file)
+    with open(file_path, 'r') as file:
+        data = yaml.safe_load(file)
+        # print(data['steps'])
+
+    if 'steps' in data and isinstance(data['steps'], list):
+        step_to_transfer = None
+        for step in data['steps']:
+            if step.get('name') == step_name:
+                step_to_transfer = step
+                break
+        print("This function is working")
+
+        if step_to_transfer:
+            data['steps'].remove(step_to_transfer)
+            print("Extracted Step:", step_to_transfer)
+            
+            # Writing the modified data back to the source file
+            with open(file_path, 'w') as file:
+                yaml.safe_dump(data, file)
+            
+            print("Updated data written back to source file.")
+
+            #Writing step to the destination file
+
+        file_path = os.path.join(output_dir, destination_file)
+        with open(file_path, 'r') as file:
+            data = yaml.safe_load(file)
+            
+        print(data)
+        data['steps'].append(step_to_transfer)
+        print(data)
+
+        with open(file_path, 'w') as file:
+            yaml.safe_dump(data, file)
+        
+
+    
+
+
+
+
+
+
 
     

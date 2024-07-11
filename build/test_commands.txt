@@ -1,0 +1,3 @@
+dagu-cron build -o "/Users/adityathapliyal/.dagu/dags"
+
+dagu-cron transfer_step -o "/Users/adityathapliyal/.dagu/dags" -source "Task_6.yaml" -dest "Task_5.yaml" -step "step2"
