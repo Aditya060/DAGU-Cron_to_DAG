@@ -1,3 +1,4 @@
 dagu-cron build -o "/Users/adityathapliyal/.dagu/dags"
 dagu-cron add_step -o "/Users/adityathapliyal/.dagu/dags" -dag "Task_6.yaml" -step "step2" -schedule "0 * * * *" -command "echo Hello World"  -dependencies "step1"
 dagu-cron transfer_step -o "/Users/adityathapliyal/.dagu/dags" -source "Task_6.yaml" -dest "Task_5.yaml" -step "step2"
+dagu-cron remove_step -o "/Users/adityathapliyal/.dagu/dags" -dag "Task_6.yaml" -step "step1"
