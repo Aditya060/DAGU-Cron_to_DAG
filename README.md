@@ -1,3 +1,6 @@
+# Published to pypi 
+https://pypi.org/project/dagu-cron/
+
 # Dagu-cron
 
 Dagu-cron is a versatile Python package and command-line tool designed to facilitate the conversion of CRONTAB jobs into DAGU DAGs, enabling efficient management of complex workflows within a controlled application environment.
