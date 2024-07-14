@@ -8,7 +8,7 @@ import re
 # Crontab expression validator regex
 crontab_regex = re.compile(r'(@(annually|yearly|monthly|weekly|daily|hourly|reboot))|(@every (\d+(ns|us|µs|ms|s|m|h))+)|((((\d+,)+\d+|(\d+(\/|-)\d+)|\d+|\*) ?){5,7})')
 
-def is_valid_crontab(expression):
+def is_valid_crontab(expression): 
     """Validate a crontab expression."""
     return bool(crontab_regex.fullmatch(expression))
 
@@ -205,6 +205,48 @@ def transfer_step(ctx, output_dir, source_file, destination_file, step_name):
     transfer_step_core(output_dir, source_file, destination_file, step_name)
 
 cli.add_command(transfer_step)
+
+###################################### Remove step from a DAG ######################################
+
+def remove_step_core(output_dir,dag_name, step_name):
+    source_path = os.path.join(output_dir, dag_name)
+    with open(source_path, 'r') as file:
+        data = yaml.safe_load(file)
+    step_to_remove = None
+    for step in data['steps']:
+        dependencies = step.get('dependencies', [])
+        if dependencies:
+            for dependency in dependencies:
+                if dependency == step_name:
+                    print("Error. Step is a dependency in other steps. Cannot remove.")
+                        # ßraise click.UsageError("Error. Step is a dependency in other steps. Cannot remove.")
+                    return
+    for step in data['steps']:
+            if step.get('name') == step_name:
+                step_to_remove = step
+                break
+                            
+                        
+
+        
+    data['steps'].remove(step_to_remove)
+    print("Removed Step:", step_name)
+            
+    # Writing the modified data back to the source file
+    with open(source_path, 'w') as file:
+        yaml.safe_dump(data, file)
+        print("Updated data written back to source file.")
+    
+
+@click.command("remove_step")
+@click.option("-o", "--output-dir", help = "Output path for DAGs")
+@click.option("-dag", "--dag-name", help="Name of the DAG to be modified")
+@click.option("-step", "--step-name", help="Name of the step to be removed")
+@click.pass_context
+def remove_step(ctx, output_dir, dag_name, step_name):
+    remove_step_core(output_dir, dag_name, step_name)
+
+cli.add_command(remove_step)
 
 if __name__ == "__main__":
     cli()

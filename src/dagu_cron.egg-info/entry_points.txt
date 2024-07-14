@@ -1,2 +1,0 @@
-[console_scripts]
-dagu-cron = dagu_cron_Aditya07.main:cli

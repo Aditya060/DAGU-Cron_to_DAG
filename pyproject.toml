@@ -7,7 +7,7 @@ name = "dagu-cron"
 version = "0.1.0"
 description = "A tool to convert CRONTAB jobs to DAGU DAGs"
 authors = [
-    { name = "Aditya Thapliyal", email = "your.email@example.com" }
+    { name = "Aditya Thapliyal", email = "adityathapliyal0607@gmail.com" }
 ]
 license = { text = "MIT" }
 readme = "README.md"
@@ -20,13 +20,8 @@ classifiers = [
 ]
 
 [project.urls]
-homepage = "https://github.com/Aditya060/DAGU-Cron_to_DAG"
 repository = "https://github.com/Aditya060/DAGU-Cron_to_DAG"
-documentation = "https://github.com/Aditya060/DAGU-Cron_to_DAG/wiki"
-
-[project.dependencies]
-click = "^8.0"
-pyyaml = "^5.4"
+#Missing dependencies here
 
 [tool.pytest.ini_options]
 minversion = "6.0"

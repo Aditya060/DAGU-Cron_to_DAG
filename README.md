@@ -1,19 +1,3 @@
-Metadata-Version: 2.1
-Name: dagu-cron
-Version: 0.1.0
-Summary: A tool to convert CRONTAB jobs to DAGU DAGs
-Author: Aditya Thapliyal
-Author-email: Aditya Thapliyal <adityathapliyal0607@gmail.com>
-License: MIT
-Project-URL: repository, https://github.com/Aditya060/DAGU-Cron_to_DAG
-Keywords: CRONTAB,DAG,DAGU,scheduling
-Classifier: Programming Language :: Python :: 3
-Classifier: License :: OSI Approved :: MIT License
-Classifier: Operating System :: OS Independent
-Requires-Python: >=3.6
-Description-Content-Type: text/markdown
-License-File: LICENSE
-
 # Dagu-cron
 
 Dagu-cron is a versatile Python package and command-line tool designed to facilitate the conversion of CRONTAB jobs into DAGU DAGs, enabling efficient management of complex workflows within a controlled application environment.

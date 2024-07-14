@@ -1,8 +1,10 @@
+LICENSE
+README.md
+pyproject.toml
 setup.py
 src/dagu_cron.egg-info/PKG-INFO
 src/dagu_cron.egg-info/SOURCES.txt
 src/dagu_cron.egg-info/dependency_links.txt
-src/dagu_cron.egg-info/entry_points.txt
 src/dagu_cron.egg-info/top_level.txt
 src/dagu_cron_Aditya07/__init__.py
 src/dagu_cron_Aditya07/main.py
